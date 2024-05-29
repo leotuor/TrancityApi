@@ -7,38 +7,29 @@
 
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../config/config';
-import User from './UserModel';
+import Category from './CategoryModel';
 
-const Address = sequelize.define(
-  'adresses',
+const Product = sequelize.define(
+  'products',
   {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    zip_code: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    state: {
-      type: DataTypes.STRING,
+    price: {
+      type: DataTypes.FLOAT(15, 2),
       allowNull: false,
     },
-    city: {
-      type: DataTypes.STRING,
-      allowNull: false,
+    image: {
+      type: DataTypes.STRING(2000),
     },
-    street: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    district: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    number_forget: {
-      type: DataTypes.STRING,
+    description: {
+      type: DataTypes.STRING(300),
     },
   },
   {
@@ -48,15 +39,15 @@ const Address = sequelize.define(
     updatedAt: 'updated_at',
   },
 );
-Address.belongsTo(User, {
-  as: 'users',
+Product.belongsTo(Category, {
+  as: 'categories',
   onDelete: 'no action',
   onUpdate: 'no action',
   foreignKey: {
-    field: 'id_user',
-    name: 'idUser',
+    field: 'id_category',
+    name: 'idCategory',
     allowNull: false,
   },
 });
 
-export default Address;
+export default Product;

@@ -1,12 +1,11 @@
-import institutionModel from '../models/InstitutionModel';
+import User from '../models/UserModel';
 
 const get = async (req, res) => {
-    
   try {
     const id = req.params.id ? req.params.id.toString().replace(/\D/g, '') : null;
 
     if (!id) {
-      const response = await institutionModel.findAll({
+      const response = await User.findAll({
         order: [['id', 'asc']],
       });
       return res.status(200).send({
@@ -16,7 +15,7 @@ const get = async (req, res) => {
       });
     }
 
-    const response = await institutionModel.findOne({ where: { id } });
+    const response = await User.findOne({ where: { id } });
 
     if (!response) {
       return res.status(200).send({
@@ -41,9 +40,31 @@ const get = async (req, res) => {
 };
 
 const create = async (dados, res) => {
-  const { name,document_number, address_id } = dados;
+  const {
+    username,
+    cpf,
+    name,
+    phone,
+    passwordHash,
+    token,
+    role,
+    cart,
+    email,
+    recuperation,
+  } = dados;
 
-  const response = await institutionModel.create({name,document_number, address_id});
+  const response = await User.create({
+    username,
+    cpf,
+    name,
+    phone,
+    passwordHash,
+    token,
+    role,
+    cart,
+    email,
+    recuperation,
+  });
 
   return res.status(200).send({
     type: 'success',
@@ -53,7 +74,7 @@ const create = async (dados, res) => {
 };
 
 const update = async (id, dados, res) => {
-  const response = await institutionModel.findOne({ where: { id } });
+  const response = await User.findOne({ where: { id } });
 
   if (!response) {
     return res.status(200).send({
@@ -102,7 +123,7 @@ const destroy = async (req, res) => {
       });
     }
 
-    const response = await institutionModel.findOne({ where: { id } });
+    const response = await User.findOne({ where: { id } });
 
     if (!response) {
       return res.status(200).send({
