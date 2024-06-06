@@ -76,8 +76,8 @@ Order.belongsTo(Payment, {
   onDelete: 'no action',
   onUpdate: 'no action',
   foreignKey: {
-    field: 'id_adress',
-    name: 'idAddress',
+    field: 'id_payment',
+    name: 'idPayment',
     allowNull: false,
   },
 });
@@ -86,8 +86,8 @@ Order.belongsTo(Cupom, {
   onDelete: 'no action',
   onUpdate: 'no action',
   foreignKey: {
-    field: 'id_adress',
-    name: 'idAddress',
+    field: 'id_cupom',
+    name: 'idCupom',
     allowNull: false,
   },
 });

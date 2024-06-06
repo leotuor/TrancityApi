@@ -22,6 +22,10 @@ const Cupom = sequelize.define(
       type: DataTypes.INTEGER,
       defaultValue: 999,
     },
+    value: {
+      type: DataTypes.DECIMAL,
+      allowNull: false,
+    },
   },
 
   {

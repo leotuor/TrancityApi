@@ -41,15 +41,11 @@ const get = async (req, res) => {
 
 const create = async (dados, res) => {
   const {
-    code,
-    type,
-    uses,
+    name,
   } = dados;
 
   const response = await CategorieModel.create({
-    code,
-    type,
-    uses,
+    name,
   });
 
   return res.status(200).send({

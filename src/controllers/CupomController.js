@@ -44,12 +44,14 @@ const create = async (dados, res) => {
     code,
     type,
     uses,
+    value,
   } = dados;
 
   const response = await Cupom.create({
     code,
     type,
     uses,
+    value,
   });
 
   return res.status(200).send({
