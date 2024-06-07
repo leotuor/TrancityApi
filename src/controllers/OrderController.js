@@ -18,7 +18,7 @@ const get = async (req, res) => {
     const response = await Order.findOne({ where: { id } });
 
     if (!response) {
-      return res.status(200).send({
+      return res.status(404).send({
         type: 'error',
         message: `Nenhum registro com id ${id}`,
         data: [],
@@ -31,7 +31,7 @@ const get = async (req, res) => {
       data: response,
     });
   } catch (error) {
-    return res.status(200).send({
+    return res.status(501).send({
       type: 'error',
       message: 'Ops! Ocorreu um erro',
       error: error.message,
