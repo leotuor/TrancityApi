@@ -1,4 +1,4 @@
-import Rota from "../controllers/RotaController";
+import Rota from "../controllers/rotaController";
 
 export default (app) => {
   app.post('/rota/persist', Rota.persist);

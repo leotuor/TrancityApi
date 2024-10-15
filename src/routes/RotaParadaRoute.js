@@ -1,4 +1,4 @@
-import RotaParada from "../controllers/RotaParadaController";
+import RotaParada from "../controllers/rotaParadaController";
 
 export default (app) => {
   app.post('/rota-parada/persist', RotaParada.persist);

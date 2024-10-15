@@ -1,11 +1,11 @@
-import Product from '../models/ProductModel';
+import Viagem from '../models/ViagemModel';
 
 const get = async (req, res) => {
   try {
     const id = req.params.id ? req.params.id.toString().replace(/\D/g, '') : null;
 
     if (!id) {
-      const response = await Product.findAll({
+      const response = await Viagem.findAll({
         order: [['id', 'asc']],
       });
       return res.status(200).send({
@@ -15,7 +15,7 @@ const get = async (req, res) => {
       });
     }
 
-    const response = await Product.findOne({ where: { id } });
+    const response = await Viagem.findOne({ where: { id } });
 
     if (!response) {
       return res.status(200).send({
@@ -47,7 +47,7 @@ const create = async (dados, res) => {
     idRotaParada,
   } = dados;
 
-  const response = await Product.create({
+  const response = await Viagem.create({
     dataPartida,
     dataChegada,
     idMotorista,
@@ -62,7 +62,7 @@ const create = async (dados, res) => {
 };
 
 const update = async (id, dados, res) => {
-  const response = await Product.findOne({ where: { id } });
+  const response = await Viagem.findOne({ where: { id } });
 
   if (!response) {
     return res.status(200).send({
@@ -111,7 +111,7 @@ const destroy = async (req, res) => {
       });
     }
 
-    const response = await Product.findOne({ where: { id } });
+    const response = await Viagem.findOne({ where: { id } });
 
     if (!response) {
       return res.status(200).send({
