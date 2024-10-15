@@ -1,22 +1,20 @@
 /* eslint-disable quotes */
-import AddressRoute from "./AddressRoute";
-import CategoryRoute from "./CategoryRoute";
-import CupomRoute from "./CupomRoute";
-import OrderRoute from "./OrderRoute";
-import OrdersProductRoute from "./OrdersProductRoute";
-import PaymentRoute from "./PaymentRoute";
-import ProductRoute from "./ProductRoute";
-import UserRoute from "./UserRoute";
+import MotoristaRoute from "./MotoristaRoute";
+import ParadaRoute from "./ParadaRoute";
+import RotaParadaRoute from "./RotaParadaRoute";
+import RotaRoute from "./RotaRoute";
+import UsuarioRoute from "./usuarioController";
+import VeiculoRoute from "./VeiculoRoute";
+import ViagemRoute from "./ViagemRoute";
 
 function Routes(app) {
-  AddressRoute(app);
-  CategoryRoute(app);
-  CupomRoute(app);
-  OrderRoute(app);
-  OrdersProductRoute(app);
-  PaymentRoute(app);
-  ProductRoute(app);
-  UserRoute(app);
+  MotoristaRoute(app);
+  ParadaRoute(app);
+  RotaParadaRoute(app);
+  RotaRoute(app);
+  UsuarioRoute(app);
+  VeiculoRoute(app);
+  ViagemRoute(app);
 }
 
 export default Routes;

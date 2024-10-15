@@ -1,12 +1,12 @@
-import Cupom from '../models/CupomModel';
+import Product from '../models/ProductModel';
 
 const get = async (req, res) => {
   try {
     const id = req.params.id ? req.params.id.toString().replace(/\D/g, '') : null;
 
     if (!id) {
-      const response = await Cupom.findAll({
-        Cupom: [['id', 'asc']],
+      const response = await Product.findAll({
+        order: [['id', 'asc']],
       });
       return res.status(200).send({
         type: 'success',
@@ -15,7 +15,7 @@ const get = async (req, res) => {
       });
     }
 
-    const response = await Cupom.findOne({ where: { id } });
+    const response = await Product.findOne({ where: { id } });
 
     if (!response) {
       return res.status(200).send({
@@ -41,17 +41,17 @@ const get = async (req, res) => {
 
 const create = async (dados, res) => {
   const {
-    code,
-    type,
-    uses,
-    value,
+    dataPartida,
+    dataChegada,
+    idMotorista,
+    idRotaParada,
   } = dados;
 
-  const response = await Cupom.create({
-    code,
-    type,
-    uses,
-    value,
+  const response = await Product.create({
+    dataPartida,
+    dataChegada,
+    idMotorista,
+    idRotaParada,
   });
 
   return res.status(200).send({
@@ -62,7 +62,7 @@ const create = async (dados, res) => {
 };
 
 const update = async (id, dados, res) => {
-  const response = await Cupom.findOne({ where: { id } });
+  const response = await Product.findOne({ where: { id } });
 
   if (!response) {
     return res.status(200).send({
@@ -111,7 +111,7 @@ const destroy = async (req, res) => {
       });
     }
 
-    const response = await Cupom.findOne({ where: { id } });
+    const response = await Product.findOne({ where: { id } });
 
     if (!response) {
       return res.status(200).send({

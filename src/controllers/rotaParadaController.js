@@ -1,12 +1,12 @@
-import Payment from '../models/PaymentModel';
+import RotaParada from '../models/RotaParadaModel';
 
 const get = async (req, res) => {
   try {
     const id = req.params.id ? req.params.id.toString().replace(/\D/g, '') : null;
 
     if (!id) {
-      const response = await Payment.findAll({
-        order: [['id', 'asc']],
+      const response = await RotaParada.findAll({
+        RotaParada: [['id', 'asc']],
       });
       return res.status(200).send({
         type: 'success',
@@ -15,10 +15,10 @@ const get = async (req, res) => {
       });
     }
 
-    const response = await Payment.findOne({ where: { id } });
+    const response = await RotaParada.findOne({ where: { id } });
 
     if (!response) {
-      return res.status(200).send({
+      return res.status(404).send({
         type: 'error',
         message: `Nenhum registro com id ${id}`,
         data: [],
@@ -31,7 +31,7 @@ const get = async (req, res) => {
       data: response,
     });
   } catch (error) {
-    return res.status(200).send({
+    return res.status(501).send({
       type: 'error',
       message: 'Ops! Ocorreu um erro',
       error: error.message,
@@ -41,11 +41,13 @@ const get = async (req, res) => {
 
 const create = async (dados, res) => {
   const {
-    name,
+    idParada,
+    idRota,
   } = dados;
 
-  const response = await Payment.create({
-    name,
+  const response = await RotaParada.create({
+    idParada,
+    idRota,
   });
 
   return res.status(200).send({
@@ -56,7 +58,7 @@ const create = async (dados, res) => {
 };
 
 const update = async (id, dados, res) => {
-  const response = await Payment.findOne({ where: { id } });
+  const response = await RotaParada.findOne({ where: { id } });
 
   if (!response) {
     return res.status(200).send({
@@ -105,7 +107,7 @@ const destroy = async (req, res) => {
       });
     }
 
-    const response = await Payment.findOne({ where: { id } });
+    const response = await RotaParada.findOne({ where: { id } });
 
     if (!response) {
       return res.status(200).send({

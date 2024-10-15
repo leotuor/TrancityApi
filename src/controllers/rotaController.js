@@ -1,12 +1,12 @@
-import Product from '../models/ProductModel';
+import Rota from '../models/RotaModel';
 
 const get = async (req, res) => {
   try {
     const id = req.params.id ? req.params.id.toString().replace(/\D/g, '') : null;
 
     if (!id) {
-      const response = await Product.findAll({
-        order: [['id', 'asc']],
+      const response = await Rota.findAll({
+        Rota: [['id', 'asc']],
       });
       return res.status(200).send({
         type: 'success',
@@ -15,7 +15,7 @@ const get = async (req, res) => {
       });
     }
 
-    const response = await Product.findOne({ where: { id } });
+    const response = await Rota.findOne({ where: { id } });
 
     if (!response) {
       return res.status(200).send({
@@ -41,19 +41,13 @@ const get = async (req, res) => {
 
 const create = async (dados, res) => {
   const {
-    name,
-    price,
-    image,
-    description,
-    idCategory,
+    origem,
+    destino,
   } = dados;
 
-  const response = await Product.create({
-    name,
-    price,
-    image,
-    description,
-    idCategory,
+  const response = await Rota.create({
+    origem,
+    destino,
   });
 
   return res.status(200).send({
@@ -64,7 +58,7 @@ const create = async (dados, res) => {
 };
 
 const update = async (id, dados, res) => {
-  const response = await Product.findOne({ where: { id } });
+  const response = await Rota.findOne({ where: { id } });
 
   if (!response) {
     return res.status(200).send({
@@ -113,7 +107,7 @@ const destroy = async (req, res) => {
       });
     }
 
-    const response = await Product.findOne({ where: { id } });
+    const response = await Rota.findOne({ where: { id } });
 
     if (!response) {
       return res.status(200).send({

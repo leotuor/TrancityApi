@@ -1,12 +1,11 @@
-/* eslint-disable no-return-assign */
-import Address from '../models/AddressModel';
+import Motorista from '../models/MotoristaModel';
 
 const get = async (req, res) => {
   try {
     const id = req.params.id ? req.params.id.toString().replace(/\D/g, '') : null;
 
     if (!id) {
-      const response = await Address.findAll({
+      const response = await Motorista.findAll({
         order: [['id', 'asc']],
       });
       return res.status(200).send({
@@ -16,7 +15,7 @@ const get = async (req, res) => {
       });
     }
 
-    const response = await Address.findOne({ where: { id } });
+    const response = await Motorista.findOne({ where: { id } });
 
     if (!response) {
       return res.status(200).send({
@@ -42,23 +41,15 @@ const get = async (req, res) => {
 
 const create = async (dados, res) => {
   const {
-    zipCode,
-    state,
-    city,
-    street,
-    district,
-    numberForget,
-    idUser,
+    habilitacao,
+    idUsuario,
+    idVeiculo,
   } = dados;
 
-  const response = await Address.create({
-    zipCode,
-    state,
-    city,
-    street,
-    district,
-    numberForget,
-    idUser,
+  const response = await Motorista.create({
+    habilitacao,
+    idUsuario,
+    idVeiculo,
   });
 
   return res.status(200).send({
@@ -69,7 +60,7 @@ const create = async (dados, res) => {
 };
 
 const update = async (id, dados, res) => {
-  const response = await Address.findOne({ where: { id } });
+  const response = await Motorista.findOne({ where: { id } });
 
   if (!response) {
     return res.status(200).send({
@@ -118,7 +109,7 @@ const destroy = async (req, res) => {
       });
     }
 
-    const response = await Address.findOne({ where: { id } });
+    const response = await Motorista.findOne({ where: { id } });
 
     if (!response) {
       return res.status(200).send({
