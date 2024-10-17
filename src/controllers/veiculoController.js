@@ -100,7 +100,7 @@ const persist = async (req, res) => {
 
 const destroy = async (req, res) => {
   try {
-    const id = req.body.id ? req.body.id.toString().replace(/\D/g, '') : null;
+    const id = req.params.id ? req.params.id.toString().replace(/\D/g, '') : null;
     if (!id) {
       return res.status(200).send({
         type: 'error',

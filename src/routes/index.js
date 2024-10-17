@@ -1,11 +1,11 @@
 /* eslint-disable quotes */
-import MotoristaRoute from "./MotoristaRoute";
-import ParadaRoute from "./ParadaRoute";
-import RotaParadaRoute from "./RotaParadaRoute";
-import RotaRoute from "./RotaRoute";
-import UsuarioRoute from "./usuarioController";
-import VeiculoRoute from "./VeiculoRoute";
-import ViagemRoute from "./ViagemRoute";
+import MotoristaRoute from "./motoristaRoute";
+import ParadaRoute from "./paradaRoute";
+import RotaParadaRoute from "./rotaParadaRoute";
+import RotaRoute from "./rotaRoute";
+import UsuarioRoute from "./usuarioRoute";
+import VeiculoRoute from "./veiculoRoute";
+import ViagemRoute from "./viagemRoute";
 
 function Routes(app) {
   MotoristaRoute(app);
