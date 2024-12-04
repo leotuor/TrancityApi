@@ -44,12 +44,14 @@ const create = async (dados, res) => {
     nome,
     email,
     telefone,
+    senha
   } = dados;
 
   const response = await Usuario.create({
     nome,
     email,
     telefone,
+    senha
   });
 
   return res.status(200).send({
